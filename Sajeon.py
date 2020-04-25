@@ -109,9 +109,9 @@ def J_search(w):
 
 
 
-def K_search(a):
+def K_search(w):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-    url = 'https://dic.daum.net/search.do?q='+a+'&dic=hanja'
+    url = 'https://dic.daum.net/search.do?q='+w+'&dic=hanja'
     data = requests.get(url, headers=headers)
     soup = BeautifulSoup(data.text, 'html.parser')
     div_meaning= soup.find("div", attrs={'data-target': 'word'})
