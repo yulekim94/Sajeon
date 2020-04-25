@@ -3,52 +3,51 @@ from bs4 import BeautifulSoup
 
 #str(soup)
 
+
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 url = 'https://dic.daum.net/search.do?q=xuesheng&dic=ch'
 data = requests.get(url, headers=headers)
 soup = BeautifulSoup(data.text, 'html.parser')
-div_mean = soup.find("div", attrs ={'data-target' : 'mean'})
 div_word = soup.find("div", attrs ={'data-target': 'word'})
-
-
-if 'data-target="mean' in str(soup):
-    print(1)
-    box_meaning = div_mean.select_one('div.search_box > div.search_type > div.search_word > strong.tit_searchword >a')
-    href = box_meaning.get('href')
-    a = href.find('ckw')
-    first_num = href[a+3: a+12]
-    b = href.find('cku')
-    second_num = href[b+3:b+12]
-    definition_url =  'https://dic.daum.net/word/view_supword.do?wordid=ckw'+first_num+'&supid=cku'+second_num+'&suptype=KOREA_CK'
-    print(definition_url)
-elif 'tit_cleansch' in str(soup):
-    print(2)
+if 'tit_cleansch' in str(soup):
     box_word_bold = div_word.select_one('div.search_box > div.cleanword_type > div.search_cleanword > strong.tit_cleansch > a')
     href = box_word_bold.get('href')
-    a = href.find('ckw')
-    first_num = href[a + 3: a + 12]
-    b = href.find('cku')
-    second_num = href[b + 3:b + 12]
-    definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ckw' + first_num + '&supid=cku' + second_num + '&suptype=KOREA_CK'
-    print(definition_url)
+    if 'kcw' in href:
+        a = href.find('kcw')
+        first_num = href[a+3:a+12]
+        b = href.find('kcu')
+        second_num = href[b + 3:b + 12]
+        definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=kcw' + first_num + '&supid=kcu' + second_num + '&suptype=KOREA_CK'
+        print(definition_url)
+    else:
+        a = href.find('ckw')
+        first_num = href[a + 3: a + 12]
+        b = href.find('cku')
+        second_num = href[b + 3:b + 12]
+        definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ckw' + first_num + '&supid=cku' + second_num + '&suptype=KOREA_CK'
+        print(definition_url)
 else:
     box_word = div_word.select_one('div.search_box > div.search_type > div.search_word > strong.tit_searchword > a')
     href = box_word.get('href')
-    a = href.find('ckw')
-    first_num = href[a + 3: a + 12]
-    b = href.find('cku')
-    second_num = href[b + 3:b + 12]
-    definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ckw' + first_num + '&supid=cku' + second_num + '&suptype=KOREA_CK'
-    print(definition_url)
-#
-# box_word_bold = div_word.select_one('div.search_box > div.cleanword_type > div.search_cleanword > strong.tit_cleansch > a')
-# href = box_word_bold.get('href')
-# a = href.find('ckw')
-# first_num = href[a + 3: a + 12]
-# b = href.find('cku')
-# second_num = href[b + 3:b + 12]
-# definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ckw' + first_num + '&supid=cku' + second_num + '&suptype=KOREA_CK'
-# print(definition_url)
+    if 'kcw' in href:
+        a = href.find('kcw')
+        first_num = href[a+3:a+12]
+        b = href.find('kcu')
+        second_num = href[b + 3:b + 12]
+        definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=kcw' + first_num + '&supid=kcu' + second_num + '&suptype=KOREA_CK'
+        print(definition_url)
+    else:
+        a = href.find('ckw')
+        first_num = href[a + 3: a + 12]
+        b = href.find('cku')
+        second_num = href[b + 3:b + 12]
+        definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ckw' + first_num + '&supid=cku' + second_num + '&suptype=KOREA_CK'
+        print(definition_url)
+
+
+
+
+
 
 
 
