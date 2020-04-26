@@ -104,35 +104,39 @@ def K_search(w):
 
 
 
-
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-url = 'https://dic.daum.net/search.do?q=%E5%AD%B8%E7%94%9F'
+url = 'https://dic.daum.net/search.do?q=%E5%A4%A7%E5%AD%B8'
 data = requests.get(url, headers=headers)
 soup = BeautifulSoup(data.text, 'html.parser')
 div_eng = soup.find("div", attrs ={'data-tiara-layer':'word eng'})
-if 'txt_cleansch' in str(div_eng):
-    box_eng_bold=soup.find("a", attrs={'class': 'txt_cleansch'})
-    href = box_eng_bold.get('href')
-    url2 = 'https://dic.daum.net/'+href
-    data2 = requests.get(url2, headers=headers)
-    soup2 = BeautifulSoup(data2.text, 'html.parser')
-    a = url2.find('ekw')
-    first_num = url2[a+3:a+12]
-    b= soup2.select_one('div.detail_cont > div.cont_left > div.card_word > div.box_word')
-    c = b.get('data-supid')
-    second_num = c[3:15]
-    definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ekw'+first_num+'&supid=eku'+second_num+'&suptype=KUMSUNG_KE'
-    print(definition_url)
+if 'word eng' not in str(soup):
+    print('無 in 英')
 else:
-    box_eng = div_eng.select_one('div.search_box > div.search_type > div.search_word > strong.tit_searchword >a')
-    href = box_eng.get('href')
-    url2 = 'https://dic.daum.net/'+href
-    data2 = requests.get(url2, headers=headers)
-    soup2 = BeautifulSoup(data2.text, 'html.parser')
-    a = url2.find('kew')
-    first_num = url2[a+3:a+12]
-    b= soup2.select_one('div.detail_cont > div.cont_left > div.card_word > div.box_word')
-    c = b.get('data-supid')
-    second_num = c[3:15]
-    definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=kew'+first_num+'&supid=keu'+second_num+'&suptype=KUMSUNG_KE'
-    print(definition_url)
+    if 'txt_cleansch' in str(div_eng):
+        box_eng_bold=soup.find("a", attrs={'class': 'txt_cleansch'})
+        href = box_eng_bold.get('href')
+        url2 = 'https://dic.daum.net/'+href
+        data2 = requests.get(url2, headers=headers)
+        soup2 = BeautifulSoup(data2.text, 'html.parser')
+        a = url2.find('ekw')
+        first_num = url2[a+3:a+12]
+        b= soup2.select_one('div.detail_cont > div.cont_left > div.card_word > div.box_word')
+        c = b.get('data-supid')
+        second_num = c[3:15]
+        definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=ekw'+first_num+'&supid=eku'+second_num+'&suptype=KUMSUNG_KE'
+        print(definition_url)
+    else:
+        box_eng = div_eng.select_one('div.search_box > div.search_type > div.search_word > strong.tit_searchword >a')
+        href = box_eng.get('href')
+        url2 = 'https://dic.daum.net/'+href
+        data2 = requests.get(url2, headers=headers)
+        soup2 = BeautifulSoup(data2.text, 'html.parser')
+        a = url2.find('kew')
+        first_num = url2[a+3:a+12]
+        b= soup2.select_one('div.detail_cont > div.cont_left > div.card_word > div.box_word')
+        c = b.get('data-supid')
+        second_num = c[3:15]
+        definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=kew'+first_num+'&supid=keu'+second_num+'&suptype=KUMSUNG_KE'
+        print(definition_url)
+
+

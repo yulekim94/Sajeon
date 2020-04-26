@@ -139,7 +139,7 @@ def E_search(w):
     data = requests.get(url, headers=headers)
     soup = BeautifulSoup(data.text, 'html.parser')
     div_eng = soup.find("div", attrs ={'data-tiara-layer':'word eng'})
-    if 'data-target' not in str(soup):
+    if 'word eng' not in str(soup):
         return print('無 in 英')
     else:
         if 'txt_cleansch' in str(div_eng):
