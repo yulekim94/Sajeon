@@ -47,6 +47,8 @@
                 C_Exam=C_recieve['C_Exam']
                 console.log(C_Exam)
                 // console.log(C_Word_Class, C_def, C_Exam)
+                test1_html = '<p>'+C_Word_Class+'</p>'+'<p>'+C_Def+'</p>'+'<p>'+C_Exam+'</p>'
+                $('.test1').append(test1_html)
                 
                 J_recieve = response['data'][1]
                 console.log(J_recieve)
@@ -95,9 +97,6 @@
 
 <body>
     <h1>사전</h1>
-<p>
-
-</p>
 
 
 
@@ -111,6 +110,17 @@
 
     <button type="button" class="btn btn-primary btn-lg" onclick= "search_word();">검색</button>
 
+    <div class='test1'>
+        
+    </div>
+
+    <div class='test2'>
+
+    </div>
+
+    <div class='test3'>
+
+    </div>
 
 
 
