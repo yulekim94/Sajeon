@@ -36,25 +36,68 @@
             url: "/search",
             data: search_data,
             success: function (response) {
-            console.log (response['result'])
+            if (response['result']=='success'){
+                console.log(response['data'])
+                C_recieve = response['data'][0]
+                console.log(C_recieve)
+                C_Word_Class=C_recieve['C_Word_Class']
+                console.log(C_Word_Class)
+                C_Def=C_recieve['C_Def']
+                console.log(C_Def)
+                C_Exam=C_recieve['C_Exam']
+                console.log(C_Exam)
+                // console.log(C_Word_Class, C_def, C_Exam)
+                
+                J_recieve = response['data'][1]
+                console.log(J_recieve)
+                J_Word_Class=J_recieve['J_Word_Class']
+                console.log(J_Word_Class)
+                J_Def=J_recieve['J_Def']
+                console.log(J_Def)
+                J_Exam=J_recieve['J_Exam']
+                console.log(J_Exam)
+
+                K_recieve = response['data'][2]
+                console.log(K_recieve)
+                K_Word_Class=K_recieve['K_Word_Class']
+                console.log(C_Word_Class)
+                K_Def=K_recieve['K_Def']
+                console.log(K_Def)
+                K_Exam=K_recieve['K_Exam']
+                console.log(K_Exam)
+
+                E_recieve = response['data'][3]
+                console.log(E_recieve)
+                E_Word_Class=E_recieve['E_Word_Class']
+                console.log(E_Word_Class)
+                E_Def=E_recieve['E_Def']
+                console.log(E_Def)
+                E_Exam=E_recieve['E_Exam']
+                console.log(E_Exam)
+                
+            } else{
+                alert('리뷰를 받아오지 못했습니다.')
+            }
+            
+            
             }
         });
+
     }
 
+    function temp_html() {
 
 
-
-
-
-
-
+    } 
 </script>
 
 
 
 <body>
     <h1>사전</h1>
+<p>
 
+</p>
 
 
 
