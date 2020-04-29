@@ -131,7 +131,7 @@ def J_search(w):
                 b = a.find('kjw')
                 first_num = a[b + 3:b + 12]
                 c = a.find('kju')
-                second_num = a[c + 3:c + 12]    
+                second_num = a[c + 3:c + 12]
                 definition_url = 'https://dic.daum.net/word/view_supword.do?wordid=kjw' + first_num + '&supid=kju' + second_num + '&suptype=KUMSUNG_KJ'
                 return J_def_results(definition_url)
             else:

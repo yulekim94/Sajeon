@@ -28,39 +28,94 @@
         background-size: cover; 
     
     }
+
+
     .test1{
         background-color:whitesmoke;
         padding: 50px;
-        border: 10px solid maroon;
         margin: 50px;
+        border-radius: 10px;
+        position: absolute;
+        width: 600px;
+        height: 300px;
+        top: 10px;
+        right: 10px;
+        
     }
+
 
     .test2{
         background-color:whitesmoke;
         padding: 50px;
-        border: 10px solid grey;
         margin: 50px;
+        border-radius: 10px;
+        position: absolute;
+        width: 600px;
+        height: 300px;
+        top: 10px;
+        left: 10px;
+        
+        
+        
     }
+
 
     .test3{
         background-color:whitesmoke;
         padding: 50px;
-        border: 10px solid blue;
+        border-radius: 10px;
         margin: 50px;
+        position: absolute;
+        width: 450px;
+        height: 480px;
+        bottom: 10px;
+        left: 10px;
     }
+
+    
 
     .test4{
         background-color:whitesmoke;
         padding: 50px;
-        border: 10px solid green; 
+        border-radius: 10px; 
         margin: 50px;
+        position: absolute;
+        width: 450px;
+        height: 480px;
+        bottom: 10px;
+        right: 10px;
+       
     }
+
+    .input-group{
+        width: 170px;
+        height: 50px;
+        top: 370px;
+        left: 780px;
+        right: 300px;
+    }
+    #search_input{
+        text-align: center;
+    }
+
+    #search_button{
+        width: 120px;
+        height: 40px;
+        position: absolute;
+        top: 480px;
+        left: 800px;
+        right: 300px;
+        text-align: center;
+    
+    }
+
+
+
 
 </style>
 
 </head>
 <script>
-
     function search_word() {
         let search_word = $('#search_input').val();
         let search_data = { 'search_give': search_word }
@@ -73,6 +128,8 @@
             success: function (response) {
             if (response['result']=='success'){
                 console.log(response['data']);
+                Dict_Data = response['data'];
+
                 for (let i =0; i < Dict_Data.length; i++){
                     let C_Word_Class = Dict_Data[i]['C_Word_Class'];
                     let C_Def = Dict_Data[i]['C_Def'];
@@ -86,7 +143,54 @@
                     let E_Word_Class = Dict_Data[i]['E_Word_Class'];
                     let E_Def = Dict_Data[i]['E_Def'];
                     let E_Exam = Dict_Data[i]['E_Exam'];
-                    make_card(C_Word_Class, C_Def, C_Exam)
+                    
+                    if (C_Word_Class){
+                        make_card(C_Word_Class, '.test1')
+                    }
+                    
+                    if (C_Def){
+                        make_card(C_Def, '.test1')
+                    }
+
+                    if (C_Exam){
+                        make_card(C_Exam, '.test1')
+                    }
+
+                    if (J_Word_Class){
+                        make_card(J_Word_Class, '.test2')
+                    }
+
+                    if (J_Def){
+                        make_card(J_Def, '.test2')
+                    }
+
+                    if (J_Exam) {
+                        make_card(J_Exam, '.test2')
+                    }
+
+                    if (K_Word_Class) {
+                        make_card(K_Word_Class, '.test3')
+                    }
+
+                    if (K_Def) {
+                        make_card(K_Def, '.test3')
+                    }
+
+                    if (K_Exam){
+                        make_card(K_Exam, '.test3')
+                    }
+
+                    if (E_Word_Class){
+                        make_card(E_Word_Class, '.test4')
+                    }
+
+                    if (E_Def) {
+                        make_card(E_Def, '.test4')
+                    }
+
+                    if (E_Exam){
+                        make_card(E_Exam, '.test4')
+                    }
 
                 
                 }
@@ -104,10 +208,10 @@
 
     }
 
-    function make_card(a, b, c){
+    function make_card(a,d){
         
-        let temp_html = '<p>'+a+'</p>'+'<p>'+b+'</p>'+'<p>'+c+'</p>' 
-        $('.test1').append(temp_html); 
+        let temp_html = '<p>'+a+'</p>'
+        $(d).append(temp_html); 
 
     }
 
@@ -126,14 +230,12 @@
 
 
     <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-lg">검색어</span>
-        </div>
+        
         <input type="text" class="form-control" id="search_input" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-lg">
     </div>
 
-    <button type="button" class="btn btn-primary btn-lg" onclick= "search_word();">검색</button>
+    <button type="button" id="search_button" class="btn btn-primary btn-lg"  onclick= "search_word();">검색</button>
 
     <div class='test1'>
         
