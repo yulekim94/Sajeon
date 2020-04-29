@@ -72,53 +72,26 @@
             data: search_data,
             success: function (response) {
             if (response['result']=='success'){
-                console.log(response['data'])
-                C_recieve = response['data'][0]
-                console.log(C_recieve)
-                C_Word_Class=C_recieve['C_Word_Class']
-                console.log(C_Word_Class)
-                C_Def=C_recieve['C_Def']
-                console.log(C_Def)
-                C_Exam=C_recieve['C_Exam']
-                console.log(C_Exam)
-                // console.log(C_Word_Class, C_def, C_Exam)
-                test1_html = '<p>'+C_Word_Class+'</p>'+'<p>'+C_Def+'</p>'+'<p>'+C_Exam+'</p>'
-                $('.test1').append(test1_html)
+                console.log(response['data']);
+                for (let i =0; i < Dict_Data.length; i++){
+                    let C_Word_Class = Dict_Data[i]['C_Word_Class'];
+                    let C_Def = Dict_Data[i]['C_Def'];
+                    let C_Exam = Dict_Data[i]['C_Exam'];
+                    let J_Word_Class = Dict_Data[i]['J_Word_Class'];
+                    let J_Def = Dict_Data[i]['J_Def'];
+                    let J_Exam = Dict_Data[i]['J_Exam'];
+                    let K_Word_Class = Dict_Data[i]['K_Word_Class'];
+                    let K_Def = Dict_Data[i]['K_Def'];
+                    let K_Exam = Dict_Data[i]['K_Exam'];
+                    let E_Word_Class = Dict_Data[i]['E_Word_Class'];
+                    let E_Def = Dict_Data[i]['E_Def'];
+                    let E_Exam = Dict_Data[i]['E_Exam'];
+                    make_card(C_Word_Class, C_Def, C_Exam)
 
-                J_recieve = response['data'][1]
-                console.log(J_recieve)
-                J_Word_Class=J_recieve['J_Word_Class']
-                console.log(J_Word_Class)
-                J_Def=J_recieve['J_Def']
-                console.log(J_Def)
-                J_Exam=J_recieve['J_Exam']
-                console.log(J_Exam)
-                test2_html = '<p>'+J_Word_Class+'</p>'+'<p>'+J_Def+'</p>'+'<p>'+J_Exam+'</p>'
-                $('.test2').append(test2_html)
+                
+                }
 
 
-                K_recieve = response['data'][2]
-                console.log(K_recieve)
-                K_Word_Class=K_recieve['K_Word_Class']
-                console.log(C_Word_Class)
-                K_Def=K_recieve['K_Def']
-                console.log(K_Def)
-                K_Exam=K_recieve['K_Exam']
-                console.log(K_Exam)
-                test3_html = '<p>'+K_Word_Class+'</p>'+'<p>'+K_Def+'</p>'+'<p>'+K_Exam+'</p>'
-                $('.test3').append(test3_html)
-
-
-                E_recieve = response['data'][3]
-                console.log(E_recieve)
-                E_Word_Class=E_recieve['E_Word_Class']
-                console.log(E_Word_Class)
-                E_Def=E_recieve['E_Def']
-                console.log(E_Def)
-                E_Exam=E_recieve['E_Exam']
-                console.log(E_Exam)
-                test4_html = '<p>'+E_Word_Class+'</p>'+'<p>'+E_Def+'</p>'+'<p>'+E_Exam+'</p>'
-                $('.test4').append(test4_html)
 
                 
             } else{
@@ -130,6 +103,14 @@
         });
 
     }
+
+    function make_card(a, b, c){
+        
+        let temp_html = '<p>'+a+'</p>'+'<p>'+b+'</p>'+'<p>'+c+'</p>' 
+        $('.test1').append(temp_html); 
+
+    }
+
 
     function temp_html() {
 
